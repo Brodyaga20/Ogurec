@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://s7s0g6nc66mf"]
+
+[ext_resource type="Script" path="res://Scripts/Hero/HERO.gd" id="1_kpvw0"]
+[ext_resource type="Texture2D" uid="uid://be1vtx2kn8kbc" path="res://Resources/Textures/Characters/Playable/Ogurec/Eyes/Simple_glasses/Eyes_ogurec_common.png" id="5_8uytl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pntrr"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rspsi"]
+radius = 2.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6rup"]
+height = 68.0
+
+[node name="Hero" type="CharacterBody2D"]
+script = ExtResource("1_kpvw0")
+
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="RightHurtBox" type="Area2D" parent="Attack" groups=["Friendly_projectiles"]]
+position = Vector2(20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/RightHurtBox"]
+position = Vector2(-5, 4)
+shape = SubResource("CircleShape2D_pntrr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Attack/RightHurtBox"]
+visible = false
+texture = ExtResource("5_8uytl")
+
+[node name="LeftHurtBox" type="Area2D" parent="Attack" groups=["Friendly_projectiles"]]
+position = Vector2(-22, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/LeftHurtBox"]
+position = Vector2(7, 4)
+shape = SubResource("CircleShape2D_rspsi")
+
+[node name="Sprite2D" type="Sprite2D" parent="Attack/LeftHurtBox"]
+visible = false
+texture = ExtResource("5_8uytl")
+
+[node name="Body1" type="Sprite2D" parent="."]
+
+[node name="Hands" type="Sprite2D" parent="."]
+position = Vector2(-16, -8)
+centered = false
+hframes = 2
+
+[node name="Legs" type="Sprite2D" parent="."]
+position = Vector2(0, 23)
+
+[node name="Eyes" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
+texture = ExtResource("5_8uytl")
+
+[node name="Mouth" type="Sprite2D" parent="."]
+
+[node name="Glasses" type="Sprite2D" parent="."]
+
+[node name="Test_Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_v6rup")
+
+[connection signal="area_entered" from="Attack/RightHurtBox" to="." method="_on_right_hurt_box_area_entered"]
