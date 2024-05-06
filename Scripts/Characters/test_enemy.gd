@@ -1,18 +1,22 @@
 extends CharacterBody2D
-var hp = 5
+class_name Common_Enemy
+
 const IMMUNE_FRAMES = 60
+var hp = 5
 var immune_left := 0
 var knockback_multiplier := 150
+var can_be_damaged := true
+var damage_resistance := 0
+var contact_damage := 1
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	velocity.x *= 0.999
-	velocity.y *= 0.999
+	velocity.x *= 0.99
+	velocity.y *= 0.99
 	if hp == 0:
 		queue_free()
 	else:

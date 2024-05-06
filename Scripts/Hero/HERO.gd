@@ -1,6 +1,7 @@
 extends CharacterBody2D
 const TEXTURE_PATH := "res://Resources/Textures/Characters/Playable/Ogurec/" #Часть пути для текстур, дополняется ниже, когда понадобится
 
+
 var speed := 200 #Скорость персонажа
 var timer := 0 #Хз, не помню уже
 var state := "" #Состояние персонажа - идёт там он или стоит типа
@@ -65,21 +66,7 @@ func _process(delta):
 	#Разная простая анимка, мб потом переделаю в норм вид
 	timer += 1
 	
-	#анимация рук, когда персонаж стоит
-	if state == "Stop":
-		if timer % 40 == 20 + randi()%10:
-			$Hands.frame = 1
-		if timer % 60 == 0:
-			$Hands.frame = 0
-	
-	
-	#анимация ног, когда персонаж идёт
-	if state != "Stop":
-		if timer % 12 == 0:
-			if $Legs.frame != 7:
-				$Legs.frame += 1
-			else:
-				$Legs.frame = 0
+
 	
 	#Программа создаёт путь файла, основываясь на состоянии персонажа и типе конечностей и подгружает файл оттуда в текстуру, используя функцию, которая написана выше, на строке 22
 	$Body1.texture = ResourceLoader.load(file_name_sprite_ogurec("Body", body_type))
@@ -119,9 +106,25 @@ func _process(delta):
 			$Body1.flip_h = (attack_direction < 0)
 			$Hands.flip_h = (attack_direction < 0)
 			$Legs.flip_h = (attack_direction < 0)
-			$Legs.hframes = 4
-			$Legs.vframes = 2
+			$Legs.hframes = 1
+			$Legs.vframes = 1
 			
+		#анимация рук, когда персонаж стоит
+	if state == "Stop":
+		if timer % 40 == 20 + randi()%10:
+			$Hands.frame = 1
+		if timer % 60 == 0:
+			$Hands.frame = 0
+	
+	
+	#анимация ног, когда персонаж идёт
+	if state == "Move" or state == "Attack_in_move":
+		if timer % 12 == 0:
+			if $Legs.frame != 7:
+				$Legs.frame += 1
+			else:
+				$Legs.frame = 0
+	
 	
 	if time_to_end_attack > 0:
 		if state == "Attack" or state == "Attack_in_move":

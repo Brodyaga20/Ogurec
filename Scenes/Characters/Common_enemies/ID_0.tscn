@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://j1jrd0l5cky3"]
+
+[ext_resource type="PackedScene" uid="uid://b1eda3hcte7us" path="res://Scenes/Characters/test_enemy.tscn" id="1_qa2nd"]
+[ext_resource type="Texture2D" uid="uid://cxaie1bgrm86e" path="res://Resources/Textures/Characters/Stupid_Enemies/Test/Sprite.png" id="2_1uaf7"]
+
+[node name="Body" instance=ExtResource("1_qa2nd")]
+
+[node name="Texture" parent="." index="2"]
+texture = ExtResource("2_1uaf7")

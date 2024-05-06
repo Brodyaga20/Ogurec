@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cxaie1bgrm86e" path="res://Resources/Textures/Characters/Stupid_Enemies/Test/Sprite.png" id="1_tjncl"]
 [ext_resource type="PackedScene" uid="uid://s7s0g6nc66mf" path="res://Scenes/Hero/HERO.tscn" id="2_yaqag"]
-[ext_resource type="PackedScene" uid="uid://b1eda3hcte7us" path="res://Scenes/Characters/test_enemy.tscn" id="3_kmgc5"]
+[ext_resource type="PackedScene" uid="uid://j1jrd0l5cky3" path="res://Scenes/Characters/Common_enemies/ID_0.tscn" id="5_3pnqg"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -21,5 +21,4 @@ texture = ExtResource("1_tjncl")
 [node name="Hero" parent="." instance=ExtResource("2_yaqag")]
 position = Vector2(129, 144)
 
-[node name="Enemy" parent="." instance=ExtResource("3_kmgc5")]
-position = Vector2(203, 160)
+[node name="Body" parent="." instance=ExtResource("5_3pnqg")]
