@@ -31,7 +31,7 @@ func direction():
 
 
 func _process(delta):
-	Global.player_position = position
+	PlayerInfo.player_position = position
 	#на пока
 	if Input.is_action_just_pressed("Return"):
 		get_tree().quit()
@@ -153,13 +153,13 @@ func _process(delta):
 
 	if attack_direction > 0:
 		if time_to_end_attack != 0:
-			$Attack/RightHurtBox.position.y = 0
+			$Attack/RightHitBox.position.y = 0
 	else:
 		if time_to_end_attack != 0:
-			$Attack/LeftHurtBox.position.y = 0
+			$Attack/LeftHitBox.position.y = 0
 	if time_to_end_attack == 0:
-		$Attack/RightHurtBox.position.y = -400
-		$Attack/LeftHurtBox.position.y = -400
+		$Attack/RightHitBox.position.y = -400
+		$Attack/LeftHitBox.position.y = -400
 	
 	velocity.y += 980 * delta
 	move_and_slide()
@@ -167,5 +167,9 @@ func _process(delta):
 
 
 
-func _on_right_hurt_box_area_entered(area):
-	print(area.name)
+
+
+func _on_attack_area_entered(area):
+	if area.get_parent().has_method("get_damage"):
+		area.get_parent().get_damage(position - area.position - Vector2(0, 100))
+	pass # Replace with function body.
