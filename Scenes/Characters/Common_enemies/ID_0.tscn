@@ -1,11 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://j1jrd0l5cky3"]
+[gd_scene load_steps=3 format=3 uid="uid://j1jrd0l5cky3"]
 
 [ext_resource type="PackedScene" uid="uid://b1eda3hcte7us" path="res://Scenes/Characters/test_enemy.tscn" id="1_qa2nd"]
-[ext_resource type="Texture2D" uid="uid://cxaie1bgrm86e" path="res://Resources/Textures/Characters/Stupid_Enemies/Test/Sprite.png" id="2_1uaf7"]
 [ext_resource type="Script" path="res://Scripts/Characters/Common_enemies/ID_0.gd" id="2_4vuet"]
 
 [node name="Body" instance=ExtResource("1_qa2nd")]
 script = ExtResource("2_4vuet")
-
-[node name="Texture" parent="." index="2"]
-texture = ExtResource("2_1uaf7")

@@ -1,23 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1eda3hcte7us"]
+[gd_scene load_steps=2 format=3 uid="uid://b1eda3hcte7us"]
 
-[ext_resource type="Script" path="res://Scripts/Characters/Common_enemy.gd" id="1_nnei4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xuju0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_17s0e"]
-size = Vector2(22, 22)
+[ext_resource type="Script" path="res://Scripts/Characters/Common_enemy.gd" id="1_8mvmf"]
 
 [node name="Body" type="CharacterBody2D"]
-script = ExtResource("1_nnei4")
-
-[node name="CollisionBox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_xuju0")
-
-[node name="Hurtbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource("RectangleShape2D_17s0e")
-
-[node name="Texture" type="Sprite2D" parent="."]
-
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+script = ExtResource("1_8mvmf")

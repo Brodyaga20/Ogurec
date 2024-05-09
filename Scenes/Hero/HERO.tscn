@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://s7s0g6nc66mf"]
+[gd_scene load_steps=13 format=3 uid="uid://s7s0g6nc66mf"]
 
 [ext_resource type="Script" path="res://Scripts/Hero/HERO.gd" id="1_kpvw0"]
 [ext_resource type="Texture2D" uid="uid://dex6jrvksjlix" path="res://Resources/Textures/Characters/Playable/Ogurec/Body/Simple/Stop/Texture.png" id="2_2xiph"]
-[ext_resource type="Texture2D" uid="uid://ctkwdt5bday5p" path="res://Resources/Textures/Characters/Playable/Ogurec/Hands/Simple_empty/Attack/Texture.png" id="3_vxwal"]
+[ext_resource type="Texture2D" uid="uid://b5ifr44g0pvg2" path="res://Resources/Textures/Characters/Playable/Ogurec/Hands/BackHand/Simple_empty/Move/Texture.png" id="4_tvfq8"]
+[ext_resource type="Texture2D" uid="uid://b5ifr44g0pvg2" path="res://Resources/Textures/Characters/Playable/Ogurec/Hands/FrontHand/Simple_empty/Move/Texture.png" id="4_u5qf4"]
 [ext_resource type="Texture2D" uid="uid://be1vtx2kn8kbc" path="res://Resources/Textures/Characters/Playable/Ogurec/Eyes/Simple_glasses/Eyes_ogurec_common.png" id="5_8uytl"]
+[ext_resource type="Texture2D" uid="uid://butixooq043cw" path="res://Resources/Textures/Characters/Playable/Ogurec/Legs/Simple/Move/Texture.png" id="5_arwvo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pntrr"]
 radius = 3.0
@@ -14,32 +16,123 @@ radius = 3.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6rup"]
 height = 68.0
 
+[sub_resource type="Animation" id="Animation_rmjup"]
+resource_name = "Move"
+length = 0.69
+step = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackHand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.09, 0.18, 0.27, 0.36, 0.45, 0.54, 0.63),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FrontHand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.09, 0.18, 0.27, 0.36, 0.45, 0.54, 0.63),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Legs:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.09, 0.18, 0.27, 0.36, 0.45, 0.54, 0.63),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_nghlu"]
+resource_name = "Stop"
+length = 0.7
+step = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackHand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FrontHand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1cny0"]
+_data = {
+"Move": SubResource("Animation_rmjup"),
+"Stop": SubResource("Animation_nghlu")
+}
+
 [node name="Hero" type="CharacterBody2D"]
 script = ExtResource("1_kpvw0")
 
 [node name="Attack" type="Area2D" parent="."]
 
 [node name="RightHitBox" type="CollisionShape2D" parent="Attack"]
-position = Vector2(11, 5)
+position = Vector2(11, 4.5)
 shape = SubResource("CircleShape2D_pntrr")
 
 [node name="LeftHitBox" type="CollisionShape2D" parent="Attack"]
-position = Vector2(-11, 5)
+position = Vector2(-11, 4.5)
 shape = SubResource("CircleShape2D_rspsi")
+
+[node name="BackHand" type="Sprite2D" parent="."]
+position = Vector2(0, 7.5)
+texture = ExtResource("4_tvfq8")
+flip_h = true
+hframes = 4
+vframes = 2
+frame = 6
 
 [node name="Body1" type="Sprite2D" parent="."]
 texture = ExtResource("2_2xiph")
 
-[node name="Hands" type="Sprite2D" parent="."]
-position = Vector2(-16, -8)
-texture = ExtResource("3_vxwal")
+[node name="FrontHand" type="Sprite2D" parent="."]
+position = Vector2(-16, -11.5)
+texture = ExtResource("4_u5qf4")
 centered = false
 flip_h = true
-hframes = 2
-vframes = 4
+hframes = 4
+vframes = 2
+frame = 6
+
+[node name="Hands" type="Node2D" parent="."]
 
 [node name="Legs" type="Sprite2D" parent="."]
 position = Vector2(0, 23)
+texture = ExtResource("5_arwvo")
+hframes = 4
+vframes = 2
+frame = 6
 
 [node name="Eyes" type="Sprite2D" parent="."]
 position = Vector2(0, -20)
@@ -52,4 +145,14 @@ texture = ExtResource("5_8uytl")
 [node name="Test_Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_v6rup")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1cny0")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
 [connection signal="area_entered" from="Attack" to="." method="_on_attack_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

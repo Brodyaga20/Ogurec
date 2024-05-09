@@ -77,17 +77,21 @@ func _process(delta):
 		pass
 	
 	#Появление/Исчезание настроек
-	if timer_to_show_settings > 1 && timer_to_show_settings != 20:
+	if timer_to_show_settings > 10 && timer_to_show_settings != 20:
 		alpha_settings = float(timer_to_show_settings)/255
 		$MenuSettings/DarkBack.color = Color(0, 0, 0, 1 - alpha_settings)
+		$MenuSettings/DarkBack.visible = true
 		timer_to_show_settings -= settings_appearance_speed * delta * 60
+	
 	elif timer_to_show_settings <= 10 && page == "settings":
 		$MenuSettings/InvisibleSettings.visible = true
 		timer_to_show_settings = 20
+	
 	elif timer_to_show_settings <= -20 && page != "settings":
 		alpha_settings = float(timer_to_show_settings)/255
 		$MenuSettings/DarkBack.color = Color(0, 0, 0, -alpha_settings)
 		timer_to_show_settings += settings_appearance_speed * delta * 60
+		#$MenuSettings/DarkBack.visible = false
 		
 	#ПРОКРУТКА МЫШЬЮ
 	if scrolling:
@@ -151,6 +155,8 @@ func _process(delta):
 					$BackGround.frame = 0
 					$MenuSettings/InvisibleSettings/BackGround/BackGroundCount.frame = 0
 					background = "wood"
+			
+			
 		
 		#сейв-пейдж
 		elif page == "save":
@@ -159,6 +165,10 @@ func _process(delta):
 				scrolling = false
 			if button == "scroll" && !scrolling:
 				scrolling = true
+			if button == "game1":
+				get_tree().change_scene_to_file("res://Scenes/test_level.tscn")
+		
+		
 
 
 	#Туда-сюда на странице выбора сохранения
