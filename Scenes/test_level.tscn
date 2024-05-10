@@ -1,24 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://1dkubjcem0d4"]
+[gd_scene load_steps=7 format=3 uid="uid://1dkubjcem0d4"]
 
-[ext_resource type="Texture2D" uid="uid://cxaie1bgrm86e" path="res://Resources/Textures/Characters/Stupid_Enemies/Test/Sprite.png" id="1_tjncl"]
+[ext_resource type="Script" path="res://Scripts/Rooms/level_1.gd" id="1_pxxj4"]
+[ext_resource type="Texture2D" uid="uid://biqdb4v3gldbk" path="res://Resources/Textures/Environment/Plate.png" id="2_2xglj"]
 [ext_resource type="PackedScene" uid="uid://s7s0g6nc66mf" path="res://Scenes/Hero/HERO.tscn" id="2_yaqag"]
+[ext_resource type="Texture2D" uid="uid://msdmuwnjmi7s" path="res://Resources/Textures/Environment/BackGround.png" id="4_l4nmm"]
 [ext_resource type="PackedScene" uid="uid://j1jrd0l5cky3" path="res://Scenes/Characters/Common_enemies/ID_0.tscn" id="5_3pnqg"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sn4ue"]
+size = Vector2(1000, 84)
+
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_pxxj4")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Floor"]
-position = Vector2(250.5, 244)
-build_mode = 1
-polygon = PackedVector2Array(-1.5, -54, 149.5, -54, 157.5, -48, 175.5, -48, 183.5, -42, 224.5, -42, 224.5, -31, 249.5, -31, 249.5, 28, 224.5, 38, 124.5, 55, -124.5, 55, -173.5, 49, -248.5, 28, -248.5, -31, -223.5, -31, -223.5, -42, -178.5, -42, -171.5, -48, -156.5, -48, -149.5, -54)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(237, 254)
+shape = SubResource("RectangleShape2D_sn4ue")
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
-position = Vector2(251, 244)
-scale = Vector2(24.9, 5.5)
-texture = ExtResource("1_tjncl")
+position = Vector2(243, 211.5)
+texture = ExtResource("2_2xglj")
 
 [node name="Hero" parent="." instance=ExtResource("2_yaqag")]
 position = Vector2(129, 156)
 
 [node name="Body" parent="." instance=ExtResource("5_3pnqg")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="ParallaxBackground"]
+position = Vector2(129, 156)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(237, 432)
+texture = ExtResource("4_l4nmm")

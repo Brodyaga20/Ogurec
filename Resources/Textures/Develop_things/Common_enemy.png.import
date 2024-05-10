@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://butixooq043cw"
-path="res://.godot/imported/Texture.png-061c098f841dadd47ed2d42b64463311.ctex"
+uid="uid://otjb50hggvjw"
+path="res://.godot/imported/Common_enemy.png-1b7784e888579a85abeaea4effdb31b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/Characters/Playable/Ogurec/Legs/Simple/Attack_in_move/Texture.png"
-dest_files=["res://.godot/imported/Texture.png-061c098f841dadd47ed2d42b64463311.ctex"]
+source_file="res://Resources/Textures/Develop_things/Common_enemy.png"
+dest_files=["res://.godot/imported/Common_enemy.png-1b7784e888579a85abeaea4effdb31b5.ctex"]
 
 [params]
 

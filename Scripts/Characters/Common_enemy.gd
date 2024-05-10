@@ -32,10 +32,12 @@ func set_variables():
 #Эта функция создаёт для врага простейшие узлы - соответственно спрайт, коллизию и хитбокс
 func create_sceleton():
 	texture.texture = ResourceLoader.load(texture_path)
+	
 	CollisionBox.shape = RectangleShape2D.new()
-	CollisionBox.scale = CollisionBox_Scale
+	CollisionBox.shape.size = CollisionBox_Scale
+	
 	DamageBox.shape = RectangleShape2D.new()
-	DamageBox.scale = HurtBox_Scale
+	DamageBox.shape.size = HurtBox_Scale
 	
 	add_child(texture)
 	add_child(CollisionBox)

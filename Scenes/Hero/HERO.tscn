@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://s7s0g6nc66mf"]
+[gd_scene load_steps=14 format=3 uid="uid://s7s0g6nc66mf"]
 
 [ext_resource type="Script" path="res://Scripts/Hero/HERO.gd" id="1_kpvw0"]
 [ext_resource type="Texture2D" uid="uid://dex6jrvksjlix" path="res://Resources/Textures/Characters/Playable/Ogurec/Body/Simple/Stop/Texture.png" id="2_2xiph"]
-[ext_resource type="Texture2D" uid="uid://b5ifr44g0pvg2" path="res://Resources/Textures/Characters/Playable/Ogurec/Hands/BackHand/Simple_empty/Move/Texture.png" id="4_tvfq8"]
-[ext_resource type="Texture2D" uid="uid://b5ifr44g0pvg2" path="res://Resources/Textures/Characters/Playable/Ogurec/Hands/FrontHand/Simple_empty/Move/Texture.png" id="4_u5qf4"]
+[ext_resource type="Texture2D" uid="uid://ctkwdt5bday5p" path="res://Resources/Textures/Characters/Playable/Ogurec/Hands/BackHand/Simple_empty/Attack/Texture.png" id="2_ch8c0"]
+[ext_resource type="Texture2D" uid="uid://ctkwdt5bday5p" path="res://Resources/Textures/Characters/Playable/Ogurec/Hands/FrontHand/Simple_empty/Attack/Texture.png" id="4_m1hmc"]
 [ext_resource type="Texture2D" uid="uid://be1vtx2kn8kbc" path="res://Resources/Textures/Characters/Playable/Ogurec/Eyes/Simple_glasses/Eyes_ogurec_common.png" id="5_8uytl"]
 [ext_resource type="Texture2D" uid="uid://butixooq043cw" path="res://Resources/Textures/Characters/Playable/Ogurec/Legs/Simple/Move/Texture.png" id="5_arwvo"]
 
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.09, 0.18, 0.27, 0.36, 0.45, 0.54, 0.63),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 2]
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -86,8 +86,38 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_ihvrk"]
+resource_name = "Attack"
+length = 0.2
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrontHand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackHand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1cny0"]
 _data = {
+"Attack": SubResource("Animation_ihvrk"),
 "Move": SubResource("Animation_rmjup"),
 "Stop": SubResource("Animation_nghlu")
 }
@@ -96,6 +126,7 @@ _data = {
 script = ExtResource("1_kpvw0")
 
 [node name="Attack" type="Area2D" parent="."]
+visible = false
 
 [node name="RightHitBox" type="CollisionShape2D" parent="Attack"]
 position = Vector2(11, 4.5)
@@ -107,23 +138,21 @@ shape = SubResource("CircleShape2D_rspsi")
 
 [node name="BackHand" type="Sprite2D" parent="."]
 position = Vector2(0, 7.5)
-texture = ExtResource("4_tvfq8")
+texture = ExtResource("2_ch8c0")
 flip_h = true
 hframes = 4
 vframes = 2
-frame = 6
 
 [node name="Body1" type="Sprite2D" parent="."]
 texture = ExtResource("2_2xiph")
 
 [node name="FrontHand" type="Sprite2D" parent="."]
 position = Vector2(-16, -11.5)
-texture = ExtResource("4_u5qf4")
+texture = ExtResource("4_m1hmc")
 centered = false
 flip_h = true
 hframes = 4
 vframes = 2
-frame = 6
 
 [node name="Hands" type="Node2D" parent="."]
 
@@ -132,7 +161,6 @@ position = Vector2(0, 23)
 texture = ExtResource("5_arwvo")
 hframes = 4
 vframes = 2
-frame = 6
 
 [node name="Eyes" type="Sprite2D" parent="."]
 position = Vector2(0, -20)
@@ -142,7 +170,8 @@ texture = ExtResource("5_8uytl")
 
 [node name="Glasses" type="Sprite2D" parent="."]
 
-[node name="Test_Collision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_v6rup")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
