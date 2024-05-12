@@ -1,21 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://1dkubjcem0d4"]
+[gd_scene load_steps=12 format=3 uid="uid://1dkubjcem0d4"]
 
 [ext_resource type="Script" path="res://Scripts/Rooms/level_1.gd" id="1_pxxj4"]
 [ext_resource type="Texture2D" uid="uid://biqdb4v3gldbk" path="res://Resources/Textures/Environment/Plate.png" id="2_2xglj"]
 [ext_resource type="PackedScene" uid="uid://s7s0g6nc66mf" path="res://Scenes/Hero/HERO.tscn" id="2_yaqag"]
 [ext_resource type="Texture2D" uid="uid://msdmuwnjmi7s" path="res://Resources/Textures/Environment/BackGround.png" id="4_l4nmm"]
 [ext_resource type="PackedScene" uid="uid://j1jrd0l5cky3" path="res://Scenes/Characters/Common_enemies/ID_0.tscn" id="5_3pnqg"]
+[ext_resource type="Texture2D" uid="uid://ceqfcbfln3ixy" path="res://Resources/Textures/Environment/Sky.png" id="5_m8acj"]
+[ext_resource type="Texture2D" uid="uid://n6tyuwhhdhua" path="res://Resources/Textures/Environment/Sun.png" id="6_d1buv"]
+[ext_resource type="Texture2D" uid="uid://cbc3wlwe0e1jq" path="res://Resources/Textures/Environment/Common_cloud.png" id="6_uukx2"]
+[ext_resource type="Texture2D" uid="uid://cbselhdc0gehs" path="res://Resources/Textures/Environment/Shadows.png" id="9_hyru4"]
+[ext_resource type="Texture2D" uid="uid://cfmafiaoguto6" path="res://Resources/Textures/Environment/Shadows_2.png" id="10_4m5x6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sn4ue"]
-size = Vector2(1000, 84)
+size = Vector2(4756, 84)
 
-[node name="Node2D" type="Node2D"]
+[node name="level_1" type="Node2D"]
 script = ExtResource("1_pxxj4")
 
 [node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(0, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(237, 254)
+position = Vector2(172, 254)
 shape = SubResource("RectangleShape2D_sn4ue")
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
@@ -23,18 +29,61 @@ position = Vector2(243, 211.5)
 texture = ExtResource("2_2xglj")
 
 [node name="Hero" parent="." instance=ExtResource("2_yaqag")]
-position = Vector2(129, 156)
+position = Vector2(50, 156)
 
 [node name="Body" parent="." instance=ExtResource("5_3pnqg")]
+
+[node name="Darkness" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = -263.0
+offset_top = -68.0
+offset_right = 737.0
+offset_bottom = 757.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="ParallaxBackground"]
-position = Vector2(129, 156)
+position = Vector2(50, 156)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.2, 0.2)
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.01, 0.01)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sky" type="Sprite2D" parent="ParallaxBackground/Sky"]
+position = Vector2(237, 71)
+texture = ExtResource("5_m8acj")
+
+[node name="Sun" type="Sprite2D" parent="ParallaxBackground/Sky"]
+position = Vector2(252, 240)
+texture = ExtResource("6_d1buv")
+hframes = 2
+
+[node name="Clouds" type="Node2D" parent="ParallaxBackground/Sky"]
+visible = false
+
+[node name="Common_Cloud" type="Sprite2D" parent="ParallaxBackground/Sky/Clouds"]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(180, 103)
+texture = ExtResource("6_uukx2")
+
+[node name="Common_Cloud2" type="Sprite2D" parent="ParallaxBackground/Sky/Clouds"]
+modulate = Color(1, 1, 1, 0.211765)
+position = Vector2(277.5, 123)
+scale = Vector2(0.86, 0.8)
+texture = ExtResource("6_uukx2")
+
+[node name="BackGround" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.08, 0.08)
+
+[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/BackGround"]
 position = Vector2(237, 432)
 texture = ExtResource("4_l4nmm")
+
+[node name="Shadows" type="Sprite2D" parent="ParallaxBackground/BackGround"]
+position = Vector2(245, 205)
+texture = ExtResource("9_hyru4")
+
+[node name="Shadows2" type="Sprite2D" parent="ParallaxBackground/BackGround"]
+position = Vector2(246, 225)
+texture = ExtResource("10_4m5x6")

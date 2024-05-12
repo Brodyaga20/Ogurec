@@ -43,13 +43,6 @@ func _process(delta):
 			get_tree().quit()
 		
 	
-	#Полноэкранный/Оконный режим (F11)
-	if Input.is_action_pressed("FullScreen"):
-		if (DisplayServer.window_get_mode() != 3):
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		else:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	
 	#При возвращении на стартовую страницу возвращается фон на место
 	if returnbackground:
 		if $BackGround.position.y < 150:
@@ -95,11 +88,16 @@ func _process(delta):
 		
 	#ПРОКРУТКА МЫШЬЮ
 	if scrolling:
-		$SavePage/Scroll.position.y = get_viewport().get_mouse_position().y - 128
+		$SavePage/Scroll.position.y = get_viewport().get_mouse_position().y - 112
 		$SavePage/Scroll.position.y = clamp($SavePage/Scroll.position.y, -14, 106)
 		$BackGround.position.y = ($SavePage/Scroll.position.y + 14) * -2.5 + 150
 		$SavePage/Buttons.position.y = $BackGround.position.y - 213
-	if Input.is_action_just_released("Click"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	if Input.is_action_just_released("Click") && scrolling:
+		Input.warp_mouse(Vector2(get_viewport().size.x * 0.908, get_viewport().get_mouse_position().y * 3.7 + get_viewport().size.y * 0.02))
 		scrolling = false
 	
 	#Левая кнопка мыши
@@ -167,6 +165,10 @@ func _process(delta):
 				scrolling = true
 			if button == "game1":
 				get_tree().change_scene_to_file("res://Scenes/test_level.tscn")
+				GlobalSettings.choosen_save = 1
+			if button == "game2":
+				get_tree().change_scene_to_file("res://Scenes/test_level.tscn")
+				GlobalSettings.choosen_save = 2
 		
 		
 
@@ -270,7 +272,6 @@ func _on_exit_button_light_area_mouse_entered():
 		$StartPage/Buttons/Exit/SpriteExitButton.frame = 1
 		$AllAudio/ExitCreak.playing = true
 		button = "exit"
-		print("yeah")
 	
 func _on_exit_button_light_area_mouse_exited():
 	if page == "start":
@@ -280,7 +281,7 @@ func _on_exit_button_light_area_mouse_exited():
 
 
 func _on_settings_button_rotate_area_mouse_entered():
-	if page == "start" || page == "save":
+	if page == "start" || page == "save"  && !scrolling:
 		button = "settings"
 
 func _on_settings_button_rotate_area_mouse_exited():
@@ -335,7 +336,7 @@ func _on_arrow_back_ground_mouse_exited():
 
 
 func _on_button_1_area_mouse_entered():
-	if page == "save" && timer_to_select == 0:
+	if page == "save" && timer_to_select == 0 && !scrolling:
 		$SavePage/Buttons/PlayButton.frame = 1
 		$AllAudio/ChooseNewGame.playing = true
 		button = "game1"
@@ -347,10 +348,10 @@ func _on_button_1_area_mouse_exited():
 
 
 func _on_button_2_area_mouse_entered():
-	if page == "save":
+	if page == "save"  && !scrolling:
 		$SavePage/Buttons/PlayButton2.frame = 1
 		$AllAudio/ChooseNewGame.playing = true
-		button = "game1"
+		button = "game2"
 
 func _on_button_2_area_mouse_exited():
 	if page == "save":

@@ -59,7 +59,6 @@ func get_damage(direction, damage):
 
 #Поведение врага
 func AI():
-	velocity.y *= 0.99
 	if hp == 0:
 		queue_free()
 	else:

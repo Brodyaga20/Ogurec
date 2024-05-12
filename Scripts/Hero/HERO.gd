@@ -6,14 +6,15 @@ var speed := 200 #Скорость персонажа
 var timer := 0 #Хз, не помню уже
 var state := "" #Состояние персонажа - идёт там он или стоит типа
 var time_to_end_attack := 0 #Таймер до окончания анимации атаки и возможности начала следующей
-var time_for_attack := 60 #Сколько времени тратится на цикл атаки с данным оружжием
+var time_for_attack := 60 #Сколько времени тратится на цикл атаки с данным оружием
 var attack_direction := 0 #Направление атаки
 var max_jump := 2 #Сколько максимум прыжков можно сделать, типа 2 - у персонажа есть двойной прыжок, 3 - тройной и т. д.
 var jump := 0 #Сколько конкретно сейчас раз ещё может прыгнуть персонаж
-var jump_force = -220
-var jump_end = true
+var jump_force := -220
+var jump_end := true
 var last_direction := 0 #В какую сторону последний раз был повёрнут персонаж при движении
-var damage = 5 #Урон персонажа в рукопашном бою
+var damage := 5 #Урон персонажа в рукопашном бою
+var in_move := "Stop"
 
 
 #Одежда/тип конечностей и т.д.
@@ -25,8 +26,8 @@ var hands_weapon_type := hands_type + "_" + weapon_type
 var legs_type := "Simple"
 
 
-func file_name_sprite_ogurec(part, type):
-	return (TEXTURE_PATH + part + "/" + type + "/" + state + "/" + "Texture.png")
+func file_name_sprite_ogurec(part, type, orig_state):
+	return (TEXTURE_PATH + part + "/" + type + "/" + orig_state + "/" + "Texture.png")
 
 func direction():
 	return (int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left")))
@@ -35,24 +36,38 @@ func get_weapon(type, time):
 	weapon_type = type
 	time_for_attack = time
 
+func flip_definition(purpose):
+	$Body1.flip_h = (purpose < 0)
+	$FrontHand.flip_h = (purpose < 0)
+	$BackHand.flip_h = (purpose < 0)
+	$Legs.flip_h = (purpose < 0)
 
 func _process(delta):
 	if !is_on_floor():
 		jump = min(jump, max_jump - 1)
-	print(state)
-	timer += 1
+	
+	timer += 144 * delta
+	
 	PlayerInfo.player_position = position
+	
 	if Input.is_action_pressed("Right") or Input.is_action_pressed("Left"):
 		last_direction = direction()
 	
 	
+	
+	
+	
 	#на пока
-	if Input.is_action_just_pressed("Return"):
-		get_tree().quit()
+	
 	
 	#прыжок восстанавливается, когда персонаж на полу
 	if is_on_floor():
 		jump = max_jump
+	
+	if direction() != 0:
+		in_move = "Move"
+	else:
+		in_move = "Stop"
 	
 	#определяем, в каком состоянии сейчас персонаж
 	if (time_to_end_attack > 0):
@@ -64,36 +79,24 @@ func _process(delta):
 			state = "Stop" # Персонаж стоит
 	
 	$AnimationPlayer.play(state)
+	$Legs/AhimationLegs.play(in_move)
 	
-	#region SCREEN_PARAMETERS
-	#Режимы: полноэкранныйй, оконный
-	if Input.is_action_pressed("FullScreen"):
-		if (DisplayServer.window_get_mode() != 3):
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		else:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	#endregion
+	
 	
 	
 	#Программа создаёт путь файла, основываясь на состоянии персонажа и типе конечностей и подгружает файл оттуда в текстуру, используя функцию, которая написана выше, на строке 22
-	$Body1.texture = ResourceLoader.load(file_name_sprite_ogurec("Body", body_type))
-	$FrontHand.texture = ResourceLoader.load(file_name_sprite_ogurec("Hands/FrontHand", hands_weapon_type))
-	$BackHand.texture = ResourceLoader.load(file_name_sprite_ogurec("Hands/BackHand", hands_weapon_type))
-	$Legs.texture = ResourceLoader.load(file_name_sprite_ogurec("Legs", legs_type))
+	$Body1.texture = ResourceLoader.load(file_name_sprite_ogurec("Body", body_type, state))
+	$FrontHand.texture = ResourceLoader.load(file_name_sprite_ogurec("Hands/FrontHand", hands_weapon_type, state))
+	$BackHand.texture = ResourceLoader.load(file_name_sprite_ogurec("Hands/BackHand", hands_weapon_type, state))
+	$Legs.texture = ResourceLoader.load(file_name_sprite_ogurec("Legs", legs_type, in_move))
 	
 	#region MATCH_STATE
 	#Как должен выглядеть спрайт при различных состояниях персонажа - (легаси, потом исправлю)
 	match state:
 		"Move":
-			$Body1.flip_h = (direction() < 0)
-			$FrontHand.flip_h = (direction() < 0)
-			$BackHand.flip_h = (direction() < 0)
-			$Legs.flip_h = (direction() < 0)
+			flip_definition(direction())
 		"Attack":
-			$Body1.flip_h = (attack_direction < 0)
-			$FrontHand.flip_h = (attack_direction < 0)
-			$BackHand.flip_h = (attack_direction < 0)
-			$Legs.flip_h = (attack_direction < 0)
+			flip_definition(attack_direction)
 	#endregion
 	
 	#region STUPID_ANIMATIONS
@@ -106,13 +109,9 @@ func _process(delta):
 			$FrontHand.frame = 0
 			$BackHand.frame = 0
 	
-	#анимация тыщ-тыщ
+	
 	if time_to_end_attack > 0:
-		if state == "Attack":
-			#$FrontHand.frame = (time_to_end_attack/4) % (attack_frames * 2)
-			#$BackHand.frame = (time_to_end_attack/4) % (attack_frames * 2)
-			pass
-		time_to_end_attack -= 60 * delta
+		time_to_end_attack -= 144 * delta
 	
 	#endregion
 	

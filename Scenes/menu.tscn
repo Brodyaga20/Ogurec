@@ -109,7 +109,6 @@ scale = Vector2(3.92, 1)
 shape = SubResource("RectangleShape2D_tgedq")
 
 [node name="SavePage" type="Node2D" parent="."]
-visible = false
 position = Vector2(-1, -38)
 
 [node name="ScrollBar" type="Node2D" parent="SavePage"]
