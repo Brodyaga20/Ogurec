@@ -17,7 +17,6 @@ func _process(delta):
 	timer += PI * delta/10 * time_speed
 	if timer >= PI * 2:
 		timer = 0
-	print(timer)
 	if abs($ParallaxBackground/Camera2D.position.x - PlayerInfo.player_position.x) >= min_camera_working_distance:
 		
 		if $ParallaxBackground/Camera2D.position.x - PlayerInfo.player_position.x > 0:

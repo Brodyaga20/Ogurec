@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://1dkubjcem0d4"]
+[gd_scene load_steps=13 format=3 uid="uid://1dkubjcem0d4"]
 
 [ext_resource type="Script" path="res://Scripts/Rooms/level_1.gd" id="1_pxxj4"]
 [ext_resource type="Texture2D" uid="uid://biqdb4v3gldbk" path="res://Resources/Textures/Environment/Plate.png" id="2_2xglj"]
@@ -13,6 +13,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sn4ue"]
 size = Vector2(4756, 84)
+
+[sub_resource type="Theme" id="Theme_fbviu"]
 
 [node name="level_1" type="Node2D"]
 script = ExtResource("1_pxxj4")
@@ -87,3 +89,13 @@ texture = ExtResource("9_hyru4")
 [node name="Shadows2" type="Sprite2D" parent="ParallaxBackground/BackGround"]
 position = Vector2(246, 225)
 texture = ExtResource("10_4m5x6")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 145.0
+offset_top = 70.0
+offset_right = 195.0
+offset_bottom = 93.0
+theme = SubResource("Theme_fbviu")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Абоба"

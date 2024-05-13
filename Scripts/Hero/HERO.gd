@@ -3,7 +3,6 @@ const TEXTURE_PATH := "res://Resources/Textures/Characters/Playable/Ogurec/" #Ч
 
 
 var speed := 200 #Скорость персонажа
-var timer := 0 #Хз, не помню уже
 var state := "" #Состояние персонажа - идёт там он или стоит типа
 var time_to_end_attack := 0 #Таймер до окончания анимации атаки и возможности начала следующей
 var time_for_attack := 60 #Сколько времени тратится на цикл атаки с данным оружием
@@ -15,6 +14,11 @@ var jump_end := true
 var last_direction := 0 #В какую сторону последний раз был повёрнут персонаж при движении
 var damage := 5 #Урон персонажа в рукопашном бою
 var in_move := "Stop"
+var max_HP := 4
+var HP := 4
+var immune_seconds := 0.5
+
+var damageable := true
 
 
 #Одежда/тип конечностей и т.д.
@@ -24,6 +28,7 @@ var hands_type := "Simple"
 var weapon_type := "Empty"
 var hands_weapon_type := hands_type + "_" + weapon_type
 var legs_type := "Simple"
+
 
 
 func file_name_sprite_ogurec(part, type, orig_state):
@@ -42,22 +47,32 @@ func flip_definition(purpose):
 	$BackHand.flip_h = (purpose < 0)
 	$Legs.flip_h = (purpose < 0)
 
+func get_player_damage(damage, type, enemyName):
+	var timer_immune := Timer.new()
+	timer_immune.wait_time = immune_seconds * damage
+	timer_immune.timeout.connect(_timer_immune_ends.bind(timer_immune))
+	
+	if damageable:
+		HP -= damage
+		add_child(timer_immune)
+		timer_immune.start()
+		damageable = false
+
+func _timer_immune_ends(timer_immune):
+	damageable = true
+	timer_immune.queue_free()
+
+
 func _process(delta):
+	if HP <= 0:
+		self.queue_free()
 	if !is_on_floor():
 		jump = min(jump, max_jump - 1)
-	
-	timer += 144 * delta
 	
 	PlayerInfo.player_position = position
 	
 	if Input.is_action_pressed("Right") or Input.is_action_pressed("Left"):
 		last_direction = direction()
-	
-	
-	
-	
-	
-	#на пока
 	
 	
 	#прыжок восстанавливается, когда персонаж на полу
@@ -83,7 +98,6 @@ func _process(delta):
 	
 	
 	
-	
 	#Программа создаёт путь файла, основываясь на состоянии персонажа и типе конечностей и подгружает файл оттуда в текстуру, используя функцию, которая написана выше, на строке 22
 	$Body1.texture = ResourceLoader.load(file_name_sprite_ogurec("Body", body_type, state))
 	$FrontHand.texture = ResourceLoader.load(file_name_sprite_ogurec("Hands/FrontHand", hands_weapon_type, state))
@@ -98,16 +112,6 @@ func _process(delta):
 		"Attack":
 			flip_definition(attack_direction)
 	#endregion
-	
-	#region STUPID_ANIMATIONS
-		#анимация рук, когда персонаж стоит
-	if state == "Stop":
-		if timer % 40 == 20 + randi() % 10:
-			$FrontHand.frame = 1
-			$BackHand.frame = 1
-		if timer % 60 == 0:
-			$FrontHand.frame = 0
-			$BackHand.frame = 0
 	
 	
 	if time_to_end_attack > 0:
@@ -141,10 +145,15 @@ func _process(delta):
 		velocity.y = jump_force
 	
 	if Input.is_action_just_pressed("Jump") && jump == max_jump:
+		var timer_jump := Timer.new()
+		timer_jump.wait_time = 0.35
+		timer_jump.timeout.connect(_timer_jump_ends.bind(timer_jump))
 		jump -= 1
 		velocity.y = jump_force * 0.8
 		jump_end = false
-		$Timer.start()
+		add_child(timer_jump)
+		timer_jump.start()
+		
 	
 	elif Input.is_action_just_pressed("Jump") && jump > 0:
 		velocity.y = (jump_force * (jump + 1.5) * 1.3) / max_jump
@@ -159,8 +168,9 @@ func _process(delta):
 	move_and_slide()
 	
 
-func _on_timer_timeout():
+func _timer_jump_ends(timer_jump):
 	jump_end = true
+	timer_jump.queue_free()
 
 
 

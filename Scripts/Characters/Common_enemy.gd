@@ -13,6 +13,8 @@ var HurtBox_Scale = Vector2(0, 0) #Размер хитбокса
 
 var texture_path = "" #Путь для подгрузки спрайта врага
 
+var enemyName = ""
+
 #Эти переменные - игровые, они отвечают за игровой процесс
 const IMMUNE_FRAMES = 60 #Кадры неуязвимости после получения урона
 var hp = 5 #Здоровье врага в данный момент
@@ -24,6 +26,9 @@ var contact_damage := 1 #Контактный урон врага !НЕРЕАЛ�
 var no_gravity = true #Подвержен ли этот враг гравитации, если да, то false
 var falling_speed = 10 #Скорость падения этого врага, применяется, если no_gravity == false
 var speed = 100 #Если враг имеет примитивный тип поведения типа преследования, то эта переменная отвечает за его скорость во время преследования
+
+func collision_object():
+	return get_last_slide_collision().get_collider()
 
 #Эта функция вызывается как только появляется враг и в конкретных врагах устанавливает конкретные значения переменных
 func set_variables():
@@ -39,10 +44,18 @@ func create_sceleton():
 	DamageBox.shape = RectangleShape2D.new()
 	DamageBox.shape.size = HurtBox_Scale
 	
+	
 	add_child(texture)
 	add_child(CollisionBox)
 	HurtBox_Area.add_child(DamageBox)
 	add_child(HurtBox_Area)
+
+
+
+func _on_damage_area_player_enetered(body):
+	if body.get_parent().has_method("get_player_damage"):
+		body.get_parent().get_player_damage(contact_damage, "physic", enemyName)
+	pass
 
 func _ready():
 	set_variables()
@@ -80,6 +93,7 @@ func gravity_influence():
 func _process(delta):
 	AI()
 	gravity_influence()
+	
 	pass
 
 
