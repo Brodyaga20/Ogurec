@@ -1,18 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://1dkubjcem0d4"]
+[gd_scene load_steps=12 format=3 uid="uid://1dkubjcem0d4"]
 
 [ext_resource type="Script" path="res://Scripts/Rooms/level_1.gd" id="1_pxxj4"]
-[ext_resource type="Texture2D" uid="uid://biqdb4v3gldbk" path="res://Resources/Textures/Environment/Plate.png" id="2_2xglj"]
 [ext_resource type="PackedScene" uid="uid://s7s0g6nc66mf" path="res://Scenes/Hero/HERO.tscn" id="2_yaqag"]
-[ext_resource type="Texture2D" uid="uid://msdmuwnjmi7s" path="res://Resources/Textures/Environment/BackGround.png" id="4_l4nmm"]
 [ext_resource type="PackedScene" uid="uid://j1jrd0l5cky3" path="res://Scenes/Characters/Common_enemies/ID_0.tscn" id="5_3pnqg"]
-[ext_resource type="Texture2D" uid="uid://ceqfcbfln3ixy" path="res://Resources/Textures/Environment/Sky.png" id="5_m8acj"]
-[ext_resource type="Texture2D" uid="uid://n6tyuwhhdhua" path="res://Resources/Textures/Environment/Sun.png" id="6_d1buv"]
-[ext_resource type="Texture2D" uid="uid://cbc3wlwe0e1jq" path="res://Resources/Textures/Environment/Common_cloud.png" id="6_uukx2"]
+[ext_resource type="Texture2D" uid="uid://ceqfcbfln3ixy" path="res://Resources/Textures/Environment/Sky_elements/Sky.png" id="5_fbaiu"]
+[ext_resource type="Texture2D" uid="uid://n6tyuwhhdhua" path="res://Resources/Textures/Environment/Sky_elements/Sun.png" id="6_fey14"]
+[ext_resource type="Texture2D" uid="uid://msdmuwnjmi7s" path="res://Resources/Textures/Environment/Backgrounds/level_1/BackGround.png" id="8_vj0ma"]
 [ext_resource type="Texture2D" uid="uid://cbselhdc0gehs" path="res://Resources/Textures/Environment/Shadows.png" id="9_hyru4"]
 [ext_resource type="Texture2D" uid="uid://cfmafiaoguto6" path="res://Resources/Textures/Environment/Shadows_2.png" id="10_4m5x6"]
+[ext_resource type="Texture2D" uid="uid://i32hcwo15tlf" path="res://Resources/Textures/Environment/Backgrounds/level_1/Between.png" id="10_lri2k"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sn4ue"]
-size = Vector2(4756, 84)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trnmq"]
+size = Vector2(75, 40)
 
 [sub_resource type="Theme" id="Theme_fbviu"]
 
@@ -20,15 +19,25 @@ size = Vector2(4756, 84)
 script = ExtResource("1_pxxj4")
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(0, 30)
+position = Vector2(0, 142)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(172, 254)
-shape = SubResource("RectangleShape2D_sn4ue")
+[node name="Green_back" type="Sprite2D" parent="Floor"]
+position = Vector2(236, 540)
+texture = ExtResource("10_lri2k")
 
-[node name="Sprite2D" type="Sprite2D" parent="Floor"]
-position = Vector2(243, 211.5)
-texture = ExtResource("2_2xglj")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+build_mode = 1
+polygon = PackedVector2Array(43, 212, 42, 212, 39, 470, -34, 470, -38, 212, -1775, 212, -1775, 571, 2552, 662, 2550, 213)
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="Camera" type="Node2D" parent="Triggers"]
+
+[node name="Area2D" type="Area2D" parent="Triggers/Camera"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Camera/Area2D"]
+position = Vector2(2.5, 478)
+shape = SubResource("RectangleShape2D_trnmq")
 
 [node name="Hero" parent="." instance=ExtResource("2_yaqag")]
 position = Vector2(50, 156)
@@ -47,18 +56,18 @@ color = Color(0, 0, 0, 0)
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="ParallaxBackground"]
-position = Vector2(50, 156)
+position = Vector2(50, 266)
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.01, 0.01)
 
 [node name="Sky" type="Sprite2D" parent="ParallaxBackground/Sky"]
 position = Vector2(237, 71)
-texture = ExtResource("5_m8acj")
+texture = ExtResource("5_fbaiu")
 
 [node name="Sun" type="Sprite2D" parent="ParallaxBackground/Sky"]
 position = Vector2(252, 240)
-texture = ExtResource("6_d1buv")
+texture = ExtResource("6_fey14")
 hframes = 2
 
 [node name="Clouds" type="Node2D" parent="ParallaxBackground/Sky"]
@@ -67,20 +76,18 @@ visible = false
 [node name="Common_Cloud" type="Sprite2D" parent="ParallaxBackground/Sky/Clouds"]
 modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(180, 103)
-texture = ExtResource("6_uukx2")
 
 [node name="Common_Cloud2" type="Sprite2D" parent="ParallaxBackground/Sky/Clouds"]
 modulate = Color(1, 1, 1, 0.211765)
 position = Vector2(277.5, 123)
 scale = Vector2(0.86, 0.8)
-texture = ExtResource("6_uukx2")
 
 [node name="BackGround" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.08, 0.08)
+motion_scale = Vector2(0.08, 0.01)
 
 [node name="Mountains" type="Sprite2D" parent="ParallaxBackground/BackGround"]
 position = Vector2(237, 432)
-texture = ExtResource("4_l4nmm")
+texture = ExtResource("8_vj0ma")
 
 [node name="Shadows" type="Sprite2D" parent="ParallaxBackground/BackGround"]
 position = Vector2(245, 205)
@@ -89,6 +96,10 @@ texture = ExtResource("9_hyru4")
 [node name="Shadows2" type="Sprite2D" parent="ParallaxBackground/BackGround"]
 position = Vector2(246, 225)
 texture = ExtResource("10_4m5x6")
+
+[node name="Between" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(7, 0)
+motion_scale = Vector2(1, 0.01)
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -99,3 +110,5 @@ offset_bottom = 93.0
 theme = SubResource("Theme_fbviu")
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "Абоба"
+
+[connection signal="body_entered" from="Triggers/Camera/Area2D" to="." method="_on_area_2d_body_entered"]

@@ -180,7 +180,7 @@ func _process(delta):
 			$SavePage/Buttons.position.y -= 20
 			$SavePage/Scroll.position.y += 8
 			$BackGround.position.y = clamp($BackGround.position.y, -150, 150)
-			$SavePage/Buttons.position.y = clamp($SavePage/Buttons.position.y, -363, -63)
+			$SavePage/Buttons.position.y = clamp($SavePage/Buttons.position.y, -367, -67)
 			$SavePage/Scroll.position.y = clamp($SavePage/Scroll.position.y, -14, 106)
 			tosound += 1
 			if background == "wood":
@@ -197,7 +197,7 @@ func _process(delta):
 				$BackGround.position.y += 20
 				$SavePage/Buttons.position.y += 20
 				$SavePage/Scroll.position.y -= 8
-				$SavePage/Buttons.position.y = clamp($SavePage/Buttons.position.y, -363, -63)
+				$SavePage/Buttons.position.y = clamp($SavePage/Buttons.position.y, -367, -67)
 				$SavePage/Scroll.position.y = clamp($SavePage/Scroll.position.y, -14, 106)
 				$BackGround.position.y = clamp($BackGround.position.y, -150, 150)
 				tosound += 1

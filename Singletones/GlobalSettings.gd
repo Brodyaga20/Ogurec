@@ -10,7 +10,6 @@ var choosen_save:int = 0
 func _process(delta):
 	if choosen_save != 0:
 		TIME[choosen_save - 1] += delta
-	print (TIME)
 	
 	
 	#region SCREEN_PARAMETERS

@@ -8,6 +8,7 @@ var min_camera_speed = 1.3
 var shadow_reduction = 1
 var timer = 0
 var time_speed = 0.1
+var area = ""
 
 func _ready():
 	$ParallaxBackground/Camera2D.position.x = PlayerInfo.player_position.x
@@ -62,4 +63,18 @@ func _process(delta):
 	if $ParallaxBackground/Sky/Sun.position.y <= -100:
 		$ParallaxBackground/Sky/Sun.position.y = 500
 	
+	if area == "to_2":
+		$ParallaxBackground/Camera2D.position.y += 2
+	if $ParallaxBackground/Camera2D.position.y > 600:
+		area = ""
 	
+	
+	
+
+
+func _on_area_2d_body_entered(body):
+	if body.name == "Hero":
+		area = "to_2"
+		pass
+	print(body.name)
+	pass # Replace with function body.

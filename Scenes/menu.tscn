@@ -1,30 +1,32 @@
-[gd_scene load_steps=41 format=3 uid="uid://72r0egumus83"]
+[gd_scene load_steps=43 format=3 uid="uid://72r0egumus83"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_brgxe"]
-[ext_resource type="Texture2D" uid="uid://qo5un73cjcms" path="res://Resources/Textures/Game_UI/Menu/Backgrounds/BackGround.png" id="2_q8ljs"]
+[ext_resource type="Texture2D" uid="uid://qo5un73cjcms" path="res://Resources/Textures/Game_UI/StartWindow/Backgrounds/BackGround.png" id="2_t0836"]
 [ext_resource type="AudioStream" uid="uid://dcrdr264yrovs" path="res://Resources/Sounds/Iron/Creak1.mp3" id="3_41f2f"]
-[ext_resource type="Texture2D" uid="uid://ckis0xi6m3i4g" path="res://Resources/Textures/Game_UI/SaveWindow/Russian/PlayButton.png" id="3_fvlw8"]
+[ext_resource type="Texture2D" uid="uid://ckis0xi6m3i4g" path="res://Resources/Textures/Game_UI/StartWindow/Russian/PlayButton.png" id="3_et3gf"]
 [ext_resource type="AudioStream" uid="uid://baiv3xfct68sb" path="res://Resources/Sounds/Iron/Creak2.mp3" id="4_nnja5"]
-[ext_resource type="Texture2D" uid="uid://edkvii54achi" path="res://Resources/Textures/Game_UI/Menu/Russian/ExitButton.png" id="4_v2hry"]
+[ext_resource type="Texture2D" uid="uid://edkvii54achi" path="res://Resources/Textures/Game_UI/StartWindow/Russian/ExitButton.png" id="4_wgqjo"]
 [ext_resource type="Texture2D" uid="uid://cspradipf5com" path="res://Resources/Textures/Game_UI/SaveWindow/Default/ScrollPlate.png" id="5_lc6k3"]
 [ext_resource type="Texture2D" uid="uid://cc4q53u43djq3" path="res://Resources/Textures/Game_UI/SaveWindow/Default/ScrollBar.png" id="6_80yb1"]
 [ext_resource type="AudioStream" uid="uid://cjqjxfc6o6gwc" path="res://Resources/Sounds/Iron/Gear.mp3" id="7_pjkp6"]
 [ext_resource type="Texture2D" uid="uid://bwt7q2kdg1miy" path="res://Resources/Textures/Game_UI/SaveWindow/Default/Scroll.png" id="7_x14ld"]
 [ext_resource type="Texture2D" uid="uid://iasbf8u0jbxa" path="res://Resources/Textures/Game_UI/SaveWindow/Default/PlayButton.png" id="8_q4d1o"]
-[ext_resource type="Texture2D" uid="uid://qsd3jfuptquw" path="res://Resources/Textures/Game_UI/Menu/Russian/SettingsButton.png" id="9_wgjq1"]
-[ext_resource type="Texture2D" uid="uid://36amjk3jmwjr" path="res://Resources/Textures/Game_UI/Menu/Backgrounds/Details/Glass(SteelBack).png" id="10_14n32"]
-[ext_resource type="Texture2D" uid="uid://dguk4fb7twijs" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/ReturnButton.png" id="11_lsfnl"]
-[ext_resource type="Texture2D" uid="uid://cw65qvsvetybf" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/Settings.png" id="12_njxw4"]
-[ext_resource type="Texture2D" uid="uid://t22yuouqgwby" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/VolumeChoose.png" id="13_qmxwk"]
-[ext_resource type="Texture2D" uid="uid://byp6hlven1ru0" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/ArrowPlateLeft.png" id="14_0b7tn"]
-[ext_resource type="Texture2D" uid="uid://b3k5onqwir120" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/ArrowPlateRight.png" id="15_7ikqm"]
-[ext_resource type="Texture2D" uid="uid://yg1ciboqkaim" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/Count.png" id="16_ih876"]
+[ext_resource type="Texture2D" uid="uid://qsd3jfuptquw" path="res://Resources/Textures/Game_UI/StartWindow/Russian/SettingsButton.png" id="9_biogq"]
+[ext_resource type="Texture2D" path="res://Resources/Textures/Game_UI/Menu/Backgrounds/Details/Glass(SteelBack).png" id="10_14n32"]
+[ext_resource type="Texture2D" uid="uid://dguk4fb7twijs" path="res://Resources/Textures/Game_UI/StartWindow/SettingsWindow/ReturnButton.png" id="11_cnd6x"]
+[ext_resource type="Texture2D" uid="uid://cw65qvsvetybf" path="res://Resources/Textures/Game_UI/StartWindow/SettingsWindow/Settings.png" id="12_sae14"]
+[ext_resource type="Texture2D" uid="uid://t22yuouqgwby" path="res://Resources/Textures/Game_UI/StartWindow/SettingsWindow/VolumeChoose.png" id="13_hl13n"]
+[ext_resource type="Texture2D" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/ArrowPlateLeft.png" id="14_0b7tn"]
+[ext_resource type="Texture2D" uid="uid://byp6hlven1ru0" path="res://Resources/Textures/Game_UI/StartWindow/SettingsWindow/ArrowPlateLeft.png" id="14_lu0ts"]
+[ext_resource type="Texture2D" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/ArrowPlateRight.png" id="15_7ikqm"]
+[ext_resource type="Texture2D" uid="uid://b3k5onqwir120" path="res://Resources/Textures/Game_UI/StartWindow/SettingsWindow/ArrowPlateRight.png" id="15_80v15"]
+[ext_resource type="Texture2D" uid="uid://yg1ciboqkaim" path="res://Resources/Textures/Game_UI/StartWindow/SettingsWindow/Count.png" id="16_apgng"]
 [ext_resource type="AudioStream" uid="uid://dfsofg8dulvhv" path="res://Resources/Sounds/Iron/SettingsOpen.mp3" id="17_7xix2"]
-[ext_resource type="Texture2D" uid="uid://digg8v03n28j0" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/LanguageChoose.png" id="17_u7jr3"]
-[ext_resource type="Texture2D" uid="uid://mafox762yblt" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/BackGroundChoose.png" id="18_en5jw"]
+[ext_resource type="Texture2D" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/LanguageChoose.png" id="17_u7jr3"]
+[ext_resource type="Texture2D" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/BackGroundChoose.png" id="18_en5jw"]
 [ext_resource type="AudioStream" uid="uid://cwugwcdfr4sc8" path="res://Resources/Sounds/Iron/SettingsClose.mp3" id="18_ln4wo"]
 [ext_resource type="AudioStream" uid="uid://t732h604a1vb" path="res://Resources/Sounds/Iron/ChangeVolume.mp3" id="19_7k7bw"]
-[ext_resource type="Texture2D" uid="uid://cchyqbe0da4m3" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/BackGroundCount.png" id="19_ivsl0"]
+[ext_resource type="Texture2D" path="res://Resources/Textures/Game_UI/Menu/SettingsWindow/BackGroundCount.png" id="19_ivsl0"]
 [ext_resource type="AudioStream" uid="uid://c3gygaej411oq" path="res://Resources/Sounds/Iron/Chain.mp3" id="23_jvt1b"]
 [ext_resource type="AudioStream" uid="uid://c67jrvvf1hjpk" path="res://Resources/Sounds/Wood/WoodCreak.mp3" id="24_nb1xt"]
 [ext_resource type="AudioStream" uid="uid://eben4q66eyva" path="res://Resources/Sounds/Wood/WoodCreak2.mp3" id="25_rt2jj"]
@@ -34,7 +36,7 @@
 size = Vector2(52, 13.7059)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgedq"]
-size = Vector2(13.0102, 13)
+size = Vector2(52.0408, 52)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6ixp"]
 size = Vector2(3, 5)
@@ -46,16 +48,16 @@ size = Vector2(88, 46)
 size = Vector2(88, 46.4)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_niep0"]
-radius = 21.0
+radius = 18.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0sc1j"]
 size = Vector2(90, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cplui"]
-size = Vector2(10, 12)
+size = Vector2(20, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxhbd"]
-size = Vector2(10, 12)
+size = Vector2(20, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28paj"]
 size = Vector2(20, 24)
@@ -69,11 +71,11 @@ script = ExtResource("1_brgxe")
 
 [node name="BackGround" type="Sprite2D" parent="."]
 position = Vector2(0, 150)
-scale = Vector2(4, 4)
-texture = ExtResource("2_q8ljs")
+texture = ExtResource("2_t0836")
 hframes = 2
 
 [node name="StartPage" type="Node2D" parent="."]
+visible = false
 
 [node name="Buttons" type="Node2D" parent="StartPage"]
 position = Vector2(0, -150)
@@ -82,33 +84,32 @@ position = Vector2(0, -150)
 position = Vector2(0, 98)
 
 [node name="SpritePlayButton" type="Sprite2D" parent="StartPage/Buttons/Play"]
-scale = Vector2(4, 4)
-texture = ExtResource("3_fvlw8")
+texture = ExtResource("3_et3gf")
 hframes = 2
 
 [node name="PlayButtonLightArea" type="Area2D" parent="StartPage/Buttons/Play"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StartPage/Buttons/Play/PlayButtonLightArea"]
-position = Vector2(0, 8.2125)
+position = Vector2(0, 8.21252)
 scale = Vector2(3.92, 3.825)
 shape = SubResource("RectangleShape2D_8y6t6")
 
 [node name="Exit" type="Node2D" parent="StartPage/Buttons"]
 position = Vector2(0, 218)
-scale = Vector2(4, 4)
 
 [node name="SpriteExitButton" type="Sprite2D" parent="StartPage/Buttons/Exit"]
-texture = ExtResource("4_v2hry")
+texture = ExtResource("4_wgqjo")
 hframes = 2
 
 [node name="ExitButtonLightArea" type="Area2D" parent="StartPage/Buttons/Exit"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StartPage/Buttons/Exit/ExitButtonLightArea"]
-position = Vector2(0, 2)
+position = Vector2(0, 8)
 scale = Vector2(3.92, 1)
 shape = SubResource("RectangleShape2D_tgedq")
 
 [node name="SavePage" type="Node2D" parent="."]
+visible = false
 position = Vector2(-1, -38)
 
 [node name="ScrollBar" type="Node2D" parent="SavePage"]
@@ -126,10 +127,10 @@ texture = ExtResource("6_80yb1")
 
 [node name="Scroll" type="Sprite2D" parent="SavePage"]
 position = Vector2(205, -14)
-scale = Vector2(4, 4)
 texture = ExtResource("7_x14ld")
 
 [node name="ScrollAreaButton" type="Area2D" parent="SavePage/Scroll"]
+scale = Vector2(4, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SavePage/Scroll/ScrollAreaButton"]
 shape = SubResource("RectangleShape2D_w6ixp")
@@ -170,12 +171,10 @@ position = Vector2(204, -120)
 
 [node name="SettingsButton" type="Sprite2D" parent="SettingsButton/Sprite"]
 rotation = 0.785398
-scale = Vector2(2.25, 2.25)
-texture = ExtResource("9_wgjq1")
+texture = ExtResource("9_biogq")
 
 [node name="SettingsButton2" type="Sprite2D" parent="SettingsButton/Sprite"]
-scale = Vector2(2.25, 2.25)
-texture = ExtResource("9_wgjq1")
+texture = ExtResource("9_biogq")
 
 [node name="SettingsButtonRotateArea" type="Area2D" parent="SettingsButton"]
 
@@ -199,14 +198,13 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0.0784314)
 
 [node name="InvisibleSettings" type="Node2D" parent="MenuSettings"]
-visible = false
 
 [node name="ReturnButton" type="Node2D" parent="MenuSettings/InvisibleSettings"]
 
 [node name="SpriteReturnButton" type="Sprite2D" parent="MenuSettings/InvisibleSettings/ReturnButton"]
 position = Vector2(0, 120)
 scale = Vector2(3, 3)
-texture = ExtResource("11_lsfnl")
+texture = ExtResource("11_cnd6x")
 hframes = 2
 
 [node name="ReturnButtonLightArea" type="Area2D" parent="MenuSettings/InvisibleSettings/ReturnButton"]
@@ -218,22 +216,21 @@ shape = SubResource("RectangleShape2D_0sc1j")
 [node name="SettingsLabel" type="Sprite2D" parent="MenuSettings/InvisibleSettings"]
 position = Vector2(0, -115)
 scale = Vector2(3, 3)
-texture = ExtResource("12_njxw4")
+texture = ExtResource("12_sae14")
 
 [node name="Volume" type="Node2D" parent="MenuSettings/InvisibleSettings"]
 
 [node name="VolumeChoose" type="Sprite2D" parent="MenuSettings/InvisibleSettings/Volume"]
 position = Vector2(-70, -60)
 scale = Vector2(3, 3)
-texture = ExtResource("13_qmxwk")
+texture = ExtResource("13_hl13n")
 
 [node name="Arrow" type="Node2D" parent="MenuSettings/InvisibleSettings/Volume"]
 position = Vector2(12, 0)
 
 [node name="ArrowPlateLeft" type="Sprite2D" parent="MenuSettings/InvisibleSettings/Volume/Arrow"]
 position = Vector2(44, -60)
-scale = Vector2(2, 2)
-texture = ExtResource("14_0b7tn")
+texture = ExtResource("14_lu0ts")
 hframes = 2
 
 [node name="ArrowPlateLeft" type="Area2D" parent="MenuSettings/InvisibleSettings/Volume/Arrow/ArrowPlateLeft"]
@@ -243,8 +240,7 @@ shape = SubResource("RectangleShape2D_cplui")
 
 [node name="ArrowPlateRight" type="Sprite2D" parent="MenuSettings/InvisibleSettings/Volume/Arrow"]
 position = Vector2(92, -60)
-scale = Vector2(2, 2)
-texture = ExtResource("15_7ikqm")
+texture = ExtResource("15_80v15")
 hframes = 2
 
 [node name="ArrowPlateRight" type="Area2D" parent="MenuSettings/InvisibleSettings/Volume/Arrow/ArrowPlateRight"]
@@ -254,8 +250,7 @@ shape = SubResource("RectangleShape2D_xxhbd")
 
 [node name="Count" type="Sprite2D" parent="MenuSettings/InvisibleSettings/Volume"]
 position = Vector2(80, -60)
-scale = Vector2(4, 4)
-texture = ExtResource("16_ih876")
+texture = ExtResource("16_apgng")
 hframes = 11
 frame = 5
 
